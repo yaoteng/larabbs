@@ -61,6 +61,8 @@ $api->version('v1', [
             // 游客可以访问的接口
             $api->get('categories', 'CategoriesController@index')
                 ->name('api.categories.index');
+            $api->get('topics', 'TopicsController@index')
+                ->name('api.topics.index');
             // 发布话题
             $api->post('topics', 'TopicsController@store')
                 ->name('api.topics.store');
@@ -68,6 +70,8 @@ $api->version('v1', [
                 ->name('api.topics.update');
             $api->delete('topics/{topic}', 'TopicsController@destroy')
                 ->name('api.topics.destroy');
+            $api->get('users/{user}/topics', 'TopicsController@userIndex')
+                ->name('api.users.topics.index');
         });
     });
 });
