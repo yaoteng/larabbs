@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLastActivedAtToUsersTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class AddLastActivedAtToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->timestamp('last_actived_at')->nullable();
+        Schema::create('images', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('user_id')->index();
+            $table->string('type')->index();
+            $table->string('path');
+            $table->timestamps();
         });
     }
 
@@ -26,9 +29,6 @@ class AddLastActivedAtToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->dropColumn('last_actived_at');
-        });
+        Schema::dropIfExists('images');
     }
 }
