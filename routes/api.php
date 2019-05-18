@@ -74,6 +74,9 @@ $api->version('v1', [
                 ->name('api.users.topics.index');
             $api->get('topics/{topic}', 'TopicsController@show')
                 ->name('api.topics.show');
+            // 发布回复
+            $api->post('topics/{topic}/replies', 'RepliesController@store')
+                ->name('api.topics.replies.store');
         });
     });
 });
